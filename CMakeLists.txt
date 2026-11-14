@@ -49,5 +49,9 @@ target_compile_options(
 if(FUTILS_BUILD_EXAMPLES)
   add_executable(error_handling_example examples/error_handling.f90)
   target_link_libraries(error_handling_example PRIVATE futils::futils)
-  target_compile_options(error_handling_example PRIVATE -cpp -ffile-prefix-map=${CMAKE_SOURCE_DIR}/src/= )
+  target_compile_options(error_handling_example PRIVATE -cpp)
+  
+  add_executable(enum_example examples/enum.f90)
+  target_link_libraries(enum_example PRIVATE futils::futils)
+  target_compile_options(enum_example PRIVATE -cpp)
 endif()
