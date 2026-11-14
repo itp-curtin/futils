@@ -3,7 +3,7 @@ cmake_minimum_required(VERSION 3.25)
 project(
     futils
     VERSION 0.1.0
-    DESCRIPTION "Fortran library for parsing simple block-based input files"
+    DESCRIPTION "Fortran library providing some basic utilities"
     LANGUAGES Fortran
 )
 

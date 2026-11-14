@@ -24,11 +24,19 @@ contains
     integer, intent(in) :: line
     character(len=*), intent(in) :: file, msg
     type(string_t) :: file_s, line_s, msg_s
+    character*12, parameter :: newline = new_line('a')//repeat(' ',11)
+    integer :: n, i
 
     file_s = trim(adjustl(file))
     line_s = line
 
-    msg_s = '[ '//file_s//': LINE '//line_s//' ] :: '//trim(adjustl(msg))
+    n = len_trim(file) + 7
+
+    msg_s = repeat('-',n)
+    msg_s = msg_s//newline//'FILE: '//file_s
+    msg_s = msg_s//newline//'LINE: '//line_s
+    msg_s = msg_s//newline//'MSG:: '//trim(adjustl(msg))
+    msg_s = msg_s//newline//repeat('-',n)
 
     error stop msg_s%s
 
