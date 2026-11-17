@@ -149,7 +149,7 @@ contains
     INTEGER, INTENT(OUT) :: iostat
     CHARACTER(*), INTENT(INOUT) :: iomsg
 
-    write(unit, * , IOSTAT=iostat) str%s
+    write(unit, '(A)' , IOSTAT=iostat) str%s
 
   end subroutine write_string
   
