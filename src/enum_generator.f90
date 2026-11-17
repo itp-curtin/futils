@@ -1,12 +1,16 @@
 module enum_generator_m
 #include "error_handling.h"
   use error_handling_m
+  use strings_m
 
   private
+
+#define NAME_MAX_LEN 32
 
   type, public, abstract :: enumerator_t
     !private
     integer :: id
+    character(len=NAME_MAX_LEN) :: name
     logical :: set = .false.
   contains
     private
@@ -16,12 +20,12 @@ module enum_generator_m
     generic, public :: operator(/=) => not_equal
     procedure, public, pass(self) :: unset => unset_enumerator
     procedure, public, pass(self) :: is_set => is_set_enumerator
+    procedure, public, pass(self) :: get_name => get_enumerator_name
   end type enumerator_t
 
   interface assignment(=)
     module procedure assign_enumerator
   end interface
-
 
 
   ! How to create enums:
@@ -112,5 +116,12 @@ contains
     lhs%set = .true.
 
   end subroutine assign_enumerator
+
+  pure type(string_t) function get_enumerator_name(self) result(name)
+    implicit none
+    class(enumerator_t), intent(in) :: self
+
+    name = trim(adjustl(self%name))
+  end function get_enumerator_name
 
 end module enum_generator_m

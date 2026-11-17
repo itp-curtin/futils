@@ -4,7 +4,7 @@
   type, private :: enum/**/_enum_t; \
 
 #define ENUMERATOR(enum,enumerator) \
-  type(enum/**/_t) :: enumerator = enum/**/_t(__COUNTER__,.true.)
+  type(enum/**/_t) :: enumerator = enum/**/_t(__COUNTER__,"enumerator",.true.)
   
 #define END_ENUM(enum) \
   end type enum/**/_enum_t; \

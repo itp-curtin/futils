@@ -36,6 +36,8 @@ program enum_example
   if(fruit1 == fruit_enum%apple) then
     print*, 'fruit 1 is an apple'
   endif
+
+  print*, 'Fruit 1 and 2 are: '//fruit1%get_name()//' and '//fruit2%get_name()
   
   if(fruit2 /= fruit_enum%apple) then
     print*, 'fruit 2 is not an apple'
