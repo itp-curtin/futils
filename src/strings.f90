@@ -13,6 +13,7 @@ module strings_m
 
     procedure, pass(self), public :: make_upper
     procedure, pass(self), public :: make_lower
+    procedure, pass(self), public :: remove
 
   end type string_t
 
@@ -278,5 +279,26 @@ contains
 
     string_index = index(self%s, s)
   end function string_index
+
+  pure subroutine remove(self, s)
+    implicit none
+    class(string_t), intent(inout) :: self
+    character(len=*), intent(in) :: s
+
+    integer :: i, j
+
+    do i=1, len(s)
+
+      j = index(self%s, s(i:i))
+      do while(j /= 0)
+        self = self%s(1:j-1)//self%s(j+1:)
+
+        j = index(self%s, s(i:i))
+      enddo
+
+    enddo
+
+
+  end subroutine remove
 
 end module strings_m

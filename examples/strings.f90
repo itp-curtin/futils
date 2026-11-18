@@ -17,11 +17,11 @@ program strings_example
   string = string%s(1:2)
   print*, 'string(1:2): |'//string//'|'
 
+  string = '(sTrInG)'
+  print*, 'string: |'//string//'|'
 
-
-
-
-
+  call string%remove('()')
+  print*, '() removed: |'//string//'|'
 
 
 
