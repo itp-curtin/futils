@@ -10,7 +10,15 @@ module strings_m
     generic :: WRITE(FORMATTED) => WRITE
     generic :: WRITE(UNFORMATTED) => WRITE_UNFORMATTED
     generic :: READ(FORMATTED) => READ
+
+    procedure, pass(self), public :: make_upper
+    procedure, pass(self), public :: make_lower
+
   end type string_t
+
+  character*26, private, parameter :: &
+    upper_case="ABCDEFGHIJKLMNOPQRSTUVWXYZ", &
+    lower_case="abcdefghijklmnopqrstuvwxyz"
 
   interface string_t
     module procedure create_string 
@@ -227,5 +235,29 @@ contains
     enddo
 
   end function make_sentence_from_array_of_strings
+
+  subroutine make_upper(self)
+    implicit none
+    class(string_t), intent(inout) :: self
+    integer :: i, k
+
+    do i=1, len(self%s)
+      k = index(upper_case,self%s(i:i))
+      if(k /= 0) self%s(i:i) = lower_case(k:k)
+    enddo
+
+  end subroutine make_upper
+  
+  subroutine make_lower(self)
+    implicit none
+    class(string_t), intent(inout) :: self
+    integer :: i, k
+
+    do i=1, len(self%s)
+      k = index(lower_case,self%s(i:i))
+      if(k /= 0) self%s(i:i) = upper_case(k:k)
+    enddo
+
+  end subroutine make_lower
 
 end module strings_m
