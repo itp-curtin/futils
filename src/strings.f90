@@ -48,6 +48,10 @@ module strings_m
     module procedure nequiv_string_string
   end interface
 
+  interface index
+    module procedure string_index
+  end interface
+
   type, private :: string_tools_t
   contains
     procedure, nopass :: sentence => make_sentence_from_array_of_strings
@@ -259,5 +263,13 @@ contains
     enddo
 
   end subroutine make_lower
+
+  pure integer function string_index(self, s)
+    implicit none
+    class(string_t), intent(in) :: self
+    character(len=*), intent(in) :: s
+
+    string_index = index(self%s, s)
+  end function string_index
 
 end module strings_m

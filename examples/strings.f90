@@ -12,6 +12,7 @@ program strings_example
   call string%make_lower
   print*, 'lower: |'//string//'|'
 
+  print*, 'index(string, i):', index(string, 'i'), index(string%s, 'i')
 
 
 
