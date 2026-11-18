@@ -242,8 +242,8 @@ contains
     integer :: i, k
 
     do i=1, len(self%s)
-      k = index(upper_case,self%s(i:i))
-      if(k /= 0) self%s(i:i) = lower_case(k:k)
+      k = index(lower_case,self%s(i:i))
+      if(k /= 0) self%s(i:i) = upper_case(k:k)
     enddo
 
   end subroutine make_upper
@@ -254,8 +254,8 @@ contains
     integer :: i, k
 
     do i=1, len(self%s)
-      k = index(lower_case,self%s(i:i))
-      if(k /= 0) self%s(i:i) = upper_case(k:k)
+      k = index(upper_case,self%s(i:i))
+      if(k /= 0) self%s(i:i) = lower_case(k:k)
     enddo
 
   end subroutine make_lower

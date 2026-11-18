@@ -54,4 +54,8 @@ if(FUTILS_BUILD_EXAMPLES)
   add_executable(enum_example examples/enum.f90)
   target_link_libraries(enum_example PRIVATE futils::futils)
   target_compile_options(enum_example PRIVATE -cpp)
+  
+  add_executable(strings_example examples/strings.f90)
+  target_link_libraries(strings_example PRIVATE futils::futils)
+  target_compile_options(strings_example PRIVATE -cpp)
 endif()
