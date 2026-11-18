@@ -204,13 +204,20 @@ contains
   
   pure subroutine assign_character_to_string(outstring, inchar)
     implicit none
-    type(string_t), intent(out) :: outstring
+    type(string_t), intent(inout) :: outstring
     character(len=*), intent(in) :: inchar
+    character(len=:), allocatable :: tempchar
+
+    !Note: outstring is intent(inout) and we are making a copy of inchar below to account for
+    !Edge cases like string = string%s(1:5)
+    allocate(character(len(inchar)) :: tempchar)
+    tempchar = inchar
 
     if(allocated(outstring%s)) deallocate(outstring%s)
-    allocate(character(len(inchar)) :: outstring%s)
-    outstring%s = inchar
+    allocate(character(len(tempchar)) :: outstring%s)
+    outstring%s = tempchar
     outstring%len = len(outstring%s)
+
   end subroutine assign_character_to_string
   
   pure subroutine assign_string_to_string(outstring, instring)

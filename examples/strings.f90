@@ -14,6 +14,8 @@ program strings_example
 
   print*, 'index(string, i):', index(string, 'i'), index(string%s, 'i')
 
+  string = string%s(1:2)
+  print*, 'string(1:2): |'//string//'|'
 
 
 
